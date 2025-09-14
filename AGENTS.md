@@ -102,7 +102,12 @@ Alternatively, run individual unit-tests: `uv run pytest tests/path/to/test_modu
 * Where possible, use empty strings and empty lists to signal missing or undefined values
   instead of using None
 * Use dependency injection and factory patterns.
-* Adhere to the SOLID principles. TODO: add description and examples.
+* Adhere to the SOLID principles:
+  1. **Single Responsibility Principle (SRP)**: A class should have only one reason to change, meaning it should only have one job or responsibility.
+  2. **Open/Closed Principle (OCP)**: Software entities should be open for extension but closed for modification.
+  3. **Liskov Substitution Principle (LSP)**: Objects of a superclass shall be replaceable with objects of its subclasses without breaking the application.
+  4. **Interface Segregation Principle (ISP)**: Clients should not be forced to depend on interfaces they don't use.
+  5. **Dependency Inversion Principle (DIP)**: High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
 ## Modules to use
 
@@ -152,13 +157,13 @@ class MyService(typing.Protocol):
     ... # no implementation in the abstract interface
 
 class MyServiceNoop(MyService):
-  """No-op implementaiton - does nothing."""
+  """No-op implementation - does nothing."""
   def process(self, req: MyServiceRequest) -> MyServiceResponse:
     """Short docstring."""
     return MyServiceResponse(color=EnumExampleColor.UNDEFINED)
 
 class MyServiceTest(MyService):
-  """Unit-test implementaiton (test double) - returns ."""
+  """Unit-test implementation (test double) - returns ."""
   def __init__(self, resp: MyServiceResponse) -> None:
     self.resp = resp
 
@@ -167,7 +172,7 @@ class MyServiceTest(MyService):
     return self.resp
 
 class MyServiceProd(MyService):
-  """Production implementaiton - calls the API."""
+  """Production implementation - calls the API."""
   def __init__(self, http_client: httpx.AsyncClient) -> None:
     self.http_client = http_client
 
@@ -211,7 +216,7 @@ import pytest
 # test doubles. But with mocks and patches, mypy
 # and other type checkers are blind.
 class MyServiceOtherTestDoubleRaises(MyService):
-  def process(req: MyServiceRequest) -> MyServiceResponse:
+  def process(self, req: MyServiceRequest) -> MyServiceResponse:
     raise ServiceUnavailableError("simulating service failure")
 
 @pytest.fixture
