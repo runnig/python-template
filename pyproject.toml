@@ -9,3 +9,7 @@ dependencies = [
     "pre-commit>=4.3.0",
     "pytest>=8.4.2",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
