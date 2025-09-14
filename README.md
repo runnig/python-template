@@ -11,17 +11,10 @@ A minimal Python project template demonstrating best practices for packaging, te
 
 ## Prerequisites
 
-* Python ≥ 3.12
-* [`uv`](https://github.com/astral-sh/uv) for dependency management
-
-## Setup
-
-```bash
-# Install dependencies
-uv sync
-```
-
-The command reads the `[project]` section of `pyproject.toml` and installs the required packages.
+* Install uv (https://github.com/astral-sh/uv) for dependency management
+* `uv venv` creates a virtual environment
+* IMPORTANT: `source .venv/bin/activate` activates the virtual environment
+* `uv sync` to install dependencies
 
 ## Running the code
 
@@ -32,6 +25,9 @@ There is no dedicated entry‑point script, but you can experiment with the exam
 uv run python -c "from src.arithm import sum; print(sum(2, 3))"
 ```
 
+Another example script is located at `scripts/example_script.py`
+* `uv run example-script`
+
 ## Testing
 
 Run all tests:
@@ -40,10 +36,10 @@ Run all tests:
 make test
 ```
 
-Or invoke pytest directly:
+Or invoke pytest directly for a concrete test file:
 
 ```bash
-uv run pytest tests/
+uv run pytest tests/test_arithm.py
 ```
 
 ## Linting & Formatting

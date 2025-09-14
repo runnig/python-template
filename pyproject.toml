@@ -16,6 +16,7 @@ pythonpath = ["src"]
 
 [project.scripts]
 example-script = "scripts.example_script:main"
+example-arithm = "scripts.example_arithm:main"
 
 [build-system]
 requires = ["hatchling >= 1.26"]
