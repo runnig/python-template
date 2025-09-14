@@ -23,6 +23,8 @@ source .venv/bin/activate
 Check if the virtual environment was activated correctly by running the command below.
 If this command output is empty, then the virtual environment is not activated.
 
+The `.venv` directory contains a Python virtual environment with all project dependencies installed. It's created using `uv` and should be activated before running any commands.
+
 ```bash
 echo $VIRTUAL_ENV
 ```
@@ -48,6 +50,10 @@ The main entrypoint of the application can be run directly:
 uv run python main.py
 ```
 
+```bash
+uv run python main.py
+```
+
 ### Testing
 
 The project uses `pytest` for testing.
@@ -59,6 +65,11 @@ make test
 ```
 
 Alternatively, run individual unit-tests: `uv run pytest tests/path/to/test_module.py`.
+
+To run a specific test function:
+```bash
+uv run pytest tests/path/to/test_module.py::test_function_name
+```
 
 ## Development Conventions
 
