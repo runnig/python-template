@@ -13,6 +13,30 @@ The project is configured to use Python version 3.12, specified in the `.python-
 
 ## Building and Running
 
+## Install uv
+
+https://docs.astral.sh/uv/getting-started/installation/
+
+## Virtual Environment
+
+Create a virtual environment if you don't have it yet.
+It is a local directory that contains all installed dependencies:
+
+```bash
+
+uv venv
+
+```
+
+```
+$ tree -L 1 .venv
+.venv
+├── bin
+├── lib
+├── lib64 -> lib
+└── pyvenv.cfg
+```
+
 ### Dependencies
 
 Before running any commands, activate the virtual environment:
@@ -240,3 +264,8 @@ def test_service_failure(my_service_failure: MyServiceOtherTestDoubleRaises) -> 
     my_service_failure.process(some_request)
 
 ```
+
+## Best Practices
+
+* Start mypy daemon to speed up type checking: `dmypy start`
+* Use "ripgrep" (rg) to search files quickly
