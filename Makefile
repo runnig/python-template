@@ -1,7 +1,8 @@
 .PHONY: test lint format
 
 test:
-	uv run pytest tests/
+	uv run --exact --package arithm pytest packages/arithm
+	uv run --exact --package example-cli pytest packages/example-cli
 
 lint:
 	uv run pre-commit run --all-files

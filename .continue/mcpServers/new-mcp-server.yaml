@@ -1,0 +1,16 @@
+name: New MCP server
+version: 0.0.1
+schema: v1
+mcpServers:
+  - name: duckduckgo
+    command: npx
+    args:
+      - -y
+      - duckduckgo-mcp-server
+    env: {}
+  - name: mcp-server-fetch
+    command: uvx
+    args:
+      - mcp-server-fetch
+    env: {}
+

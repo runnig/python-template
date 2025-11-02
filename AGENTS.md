@@ -1,8 +1,9 @@
-# Gemini Project Context: python-template
+# Project Context: python-template
 
 ## Project Overview
 
-This is a basic Python project template. It provides a simple structure for a Python application, including source code, tests, and dependency management.
+This is a basic Python project template.
+It provides a simple structure for a Python application, including source code, tests, and dependency management.
 
 The project uses
 * `uv` for managing dependencies, as indicated by the `uv.lock` file,

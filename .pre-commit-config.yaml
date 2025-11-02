@@ -7,18 +7,23 @@ repos:
     -   id: check-yaml
     -   id: check-added-large-files
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.5
+    rev: v0.11.10
     hooks:
-    -   id: ruff
+      - id: ruff-check
+        types_or: [ python, pyi ]
+      - id: ruff-check
+        types_or: [ python, pyi ]
+        args: [ --fix ]
+      - id: ruff-format
+        types_or: [ python, pyi ]
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.11.0
     hooks:
     -   id: mypy
 - repo: local
   hooks:
-    - id: pytest
-      name: pytest
-      entry: pytest -q
+    - id: "pytest"
+      name: "pytest"
+      entry: "make test"
       language: python
-      additional_dependencies: ["pytest>=8.4.2"]
       pass_filenames: false

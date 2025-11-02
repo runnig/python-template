@@ -5,23 +5,33 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "mypy>=1.18.1",
-    "pre-commit>=4.3.0",
-    "pytest>=8.4.2",
+    "arithm",
+    "example-cli",
 ]
 
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["src"]
 
-[project.scripts]
-example-script = "scripts.example_script:main"
-example-arithm = "scripts.example_arithm:main"
+[tool.uv.workspace]
+members = [
+    "packages/*",
+]
 
-[build-system]
-requires = ["hatchling >= 1.26"]
-build-backend = "hatchling.build"
+[tool.uv.sources]
+arithm = {workspace = true}
+example-cli = {workspace=true}
 
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+    "mypy",
+    "pre-commit"
+]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src"]
+[tool.ruff]
+line-length = 80
+indent-width = 4
+exclude = [".venv"]
+
+[tool.ruff.lint]
+extend-select = ["I"]
