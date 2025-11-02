@@ -13,4 +13,3 @@ mcpServers:
     args:
       - mcp-server-fetch
     env: {}
-
