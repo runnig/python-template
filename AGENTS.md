@@ -12,6 +12,73 @@ The project uses
 
 The project is configured to use Python version 3.12, specified in the `.python-version` file.
 
+## Project structure
+
+The project uses `uv workspaces` to manage modules. Read more about
+uv workspaces: https://docs.astral.sh/uv/concepts/projects/workspaces/
+
+The modules are added to "packages/" and have their own pyproject.toml
+For example, module "arithm" would be located at "packages/arithm".
+Source code goes to "src" subdirectory, unit-tests tests go to "tests" subdirectory:
+
+```bash
+$ tree packages/arithm
+packages/arithm
+├── pyproject.toml
+├── src
+│   └── arithm
+│       ├── __init__.py
+│       └── arithm.py
+└── tests
+    └── test_arithm.py
+```
+
+## Module anatomy
+
+Add the concrete implementations to
+"packages/modulename/src/modulename/modulename.py"
+
+Expose the public functions in `__init__.py`.
+
+Example:
+```py
+# file: packages/arithm/src/arithm/arithm.py
+# concrete implementation
+
+def my_func(a: int, b: int) -> int:
+    return a + b
+
+# file: packages/arithm/src/arithm/__init__.py
+# public API
+from arithm.arithm import my_func
+
+# Use __all__ to expose the publicly callable functions
+__all__ = ["my_func"]
+
+# file: packages/arithm/tests/test_arithm.py
+# unit-tests
+import arithm
+
+def test_my_func() -> None:
+    a = 1
+    b = 2
+    assert arithm.my_func(a, b) == 3
+
+```
+
+## Main Commands
+
+* Before running any commands, make sure to activate the virtual environment:
+  `source .venv/bin/activate`.
+* Check that the virtual environment was activated:
+  `echo $VIRTUAL_ENV`.
+* Invoke the command `make test` in the terminal to run all tests.
+* Alternatively, run pytest for each package, example:
+   `uv run --exact --package arithm pytest packages/arithm`
+* `make lint` to check all formatting.
+* Alternatively, run ruff for each package, example:
+  `uv run ruff check packages/arithm`
+
 ## Building and Running
 
 ## Install uv
