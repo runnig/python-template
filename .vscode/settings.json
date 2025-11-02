@@ -1,0 +1,16 @@
+{
+    "python.autoComplete.extraPaths": [
+       ".venv/lib/python3.12/site-packages",
+       "${workspaceFolder}",
+       "${workspaceFolder}/packages/arithm",
+       "${workspaceFolder}/packages/example-cli",
+       "${workspaceFolder}/packages/webservice",
+    ],
+    "python.analysis.extraPaths": [
+        ".venv/lib/python3.12/site-packages",
+       "${workspaceFolder}",
+       "${workspaceFolder}/packages/arithm",
+       "${workspaceFolder}/packages/example-cli",
+       "${workspaceFolder}/packages/webservice",
+    ]
+}
