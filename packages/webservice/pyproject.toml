@@ -1,0 +1,27 @@
+[project]
+name = "webservice"
+version = "0.1.0"
+description = "A simple webservice package"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "fastapi>=0.120.4",
+    "uvicorn>=0.24.0",
+    "httpx>=0.27.0",
+    "pytest>=8.4.2",
+]
+
+[build-system]
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=6.0",
+    "pytest-asyncio",
+]

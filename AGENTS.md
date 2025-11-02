@@ -35,10 +35,11 @@ packages/arithm
 
 ## Module anatomy
 
-Add the concrete implementations to
+The concrete function signatures and implementations go to
 "packages/modulename/src/modulename/modulename.py"
 
-Expose the public functions in `__init__.py`.
+The publicly callable functions should be added to the `__all__` list
+in `__init__.py`
 
 Example:
 ```py
@@ -46,13 +47,14 @@ Example:
 # concrete implementation
 
 def my_func(a: int, b: int) -> int:
+    """This function is a part of public API of the module arithm."""
     return a + b
 
 # file: packages/arithm/src/arithm/__init__.py
 # public API
 from arithm.arithm import my_func
 
-# Use __all__ to expose the publicly callable functions
+# Add the publicly callable functions of the module to the `__all__` list:
 __all__ = ["my_func"]
 
 # file: packages/arithm/tests/test_arithm.py
@@ -223,7 +225,7 @@ Good example of a module with an illustration of Liskov principle,
 good docstrings, field comments, enums
 
 ```python
-# src/path/to/myservice/models.py
+# packages/mymodule/src/mymodule/myservice/models.py
 
 class MyServiceRequest(pydantic.BaseModel):
   """Short doc string."""
@@ -252,7 +254,7 @@ class MyServiceResponse(pydantic.BaseModel):
   # Do not use None - use empty lists instead
   list_value: list[str] = []
 
-# src/path/to/myservice/myservice.py
+# packages/mymodule/src/mymodule/myservice/myservice.py
 class MyService(typing.Protocol):
   """Short docstring."""
   def process(self, req: MyServiceRequest) -> MyServiceResponse:
@@ -283,7 +285,7 @@ class MyServiceProd(MyService):
     """Calls the remote API."""
     # Real production implementation
 
-# src/path/to/myservice/factory.py
+# packages/mymodule/src/mymodule/myservice/factory.py
 
 def make(env: environment.Environment, args: MyServiceArgs) -> MyService:
   match env:
@@ -294,7 +296,7 @@ def make(env: environment.Environment, args: MyServiceArgs) -> MyService:
     case environment.NOOP:
       return MyServiceNoop(cfg)
 
-# src/path/to/myservice/__init__.py
+# packages/mymodule/src/mymodule/myservice/__init__.py
 
 from path.to.myservice.models import (
   MyServiceRequest,
@@ -310,7 +312,7 @@ __all__ = [
   "make",
 ]
 
-# tests/path/to/myservice/test_myservice.py
+# packages/mymodule/tests/mymodule/myservice/__init__.py
 import pytest
 
 # IMPORTANT: Use test doubles instead of mocks.
